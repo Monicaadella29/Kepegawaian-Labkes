@@ -16,11 +16,13 @@ class DashboardController extends Controller
         $sumPegawai = User::count();
         $sumWoman = User::where('jk_user', 'perempuan')->count();
         $sumMan = User::where('jk_user', 'laki-laki')->count();
-        $cuti = Cuti::where('status', 'disetujui')->get();
         $currentDate = Carbon::now()->toDateString();
+        $cuti = Cuti::where('status', 'disetujui')->where('start_date', '<=', $currentDate)
+        ->where('end_date', '>=', $currentDate)->get();
         $sumCuti = Cuti::where('start_date', '<=', $currentDate)
-            ->where('end_date', '>=', $currentDate)
-            ->count();
+        ->where('end_date', '>=', $currentDate)
+        ->distinct('user_id')
+        ->count('user_id');
         $absen = Absen::where('tgl', $currentDate)->count();
 
         foreach ($user as $sisa) {
