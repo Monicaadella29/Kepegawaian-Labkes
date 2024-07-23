@@ -29,6 +29,7 @@ use App\Models\Skp;
 use App\Models\SkpFile;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -814,13 +815,20 @@ class UserController extends Controller
             'tgl_taspen' => 'nullable',
             'no_tapera' => 'nullable',
             'kppn' => 'nullable',
+            'password' => 'nullable',
             'foto' => 'nullable'
         ]);
 
-        if ($request->hasFile('foto')) {
-            $validatedData['foto'] = $request->file('foto')->store('uploads/photos', 'public');
+        if ($request->filled('password')) {
+            $validatedData['password'] = Hash::make($validatedData['password']);
+        } else {
+            unset($validatedData['password']);
         }
-
+        
+        if ($request->hasFile('foto')) {
+            $validatedData['foto'] = $request->file('foto')->store('uploads/photos', 'public'); 
+        }
+        
         // Update data user
         $user->update($validatedData);
 

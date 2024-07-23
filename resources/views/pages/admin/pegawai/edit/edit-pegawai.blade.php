@@ -194,6 +194,12 @@
                                 class="border border-[#C3C3C3] text-gray-900 text-sm rounded-md focus:ring-[#C3C3C3] focus:border-[#C3C3C3] px-2 w-full bg-transparent"
                                 placeholder="Masukkan No NPWP" />
                         </div>
+                        <div class="wrap">
+                            <label For="" class="text-black ">Ubah Password*</label>
+                            <input type="password" id="password" name="password"
+                                class="border border-[#C3C3C3] text-gray-900 text-sm rounded-md focus:ring-[#C3C3C3] focus:border-[#C3C3C3] px-2 w-full bg-transparent"
+                                placeholder="Masukkan Password" />
+                        </div>
                     </div>
                     {{-- KANAN --}}
                     <div class="md:w-1/3 w-full flex flex-col gap-3">
