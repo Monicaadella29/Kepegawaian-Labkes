@@ -82,6 +82,9 @@
                         </div>
                         <div class="wrap">
                             <label For="file" class="text-black">Upload Surat</label>
+                            <div class="text-[12px] text-red-800 ">
+                                *Format File PDF
+                            </div>
                             <div class="relative">
                                 <input type="file" id="file" accept="application/pdf" class=""
                                     name="file_pmk[]" multiple />

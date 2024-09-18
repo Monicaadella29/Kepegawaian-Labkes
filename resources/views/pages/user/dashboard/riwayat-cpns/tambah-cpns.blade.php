@@ -90,6 +90,9 @@
                         </div>
                         <div class="wrap">
                             <label For="image" class="text-black">Surat Keterangan Jabatan</label>
+                            <div class="text-[12px] text-red-800 ">
+                                *Format File PDF
+                            </div>
                             <div class="relative">
                                 <input type="file" id="file" accept="application/pdf" class=""
                                     name="file_pns[]" multiple />

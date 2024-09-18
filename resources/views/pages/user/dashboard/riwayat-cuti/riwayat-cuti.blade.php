@@ -143,6 +143,7 @@
                 </tbody>
             </table>
         </div>
+        <x-pagination />
     </x-sidebar-user>
 </body>
 

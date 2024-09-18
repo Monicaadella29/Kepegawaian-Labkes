@@ -98,6 +98,9 @@
                     <div class="md:w-1/2 w-full flex flex-col gap-3">
                         <div class="wrap">
                             <label For="image" class="text-black">Upload Surat</label>
+                            <div class="text-[12px] text-red-800 ">
+                                *Format File PDF
+                            </div>
                             <div class="relative">
                                 <input type="file" id="file" accept="application/pdf" class=""
                                     name="file_reward[]" multiple />

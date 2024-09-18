@@ -21,9 +21,27 @@
                     <div class="md:w-1/2 w-full flex flex-col gap-3">
                         <div class="wrap ">
                             <label For="" class="text-black ">Golongan</label>
-                            <input type="text" id="" name="golongan" required
-                                class="border border-[#C3C3C3] text-gray-900 text-sm rounded-md focus:ring-[#C3C3C3] focus:border-[#C3C3C3] px-2 w-full bg-transparent"
-                                placeholder="Masukkan Golongan" />
+                            <select name="jenis_golongan" required
+                                class="border border-[#C3C3C3] text-gray-900 text-sm rounded-md focus:ring-[#C3C3C3] focus:border-[#C3C3C3] p-2 px-2 w-full bg-transparent"
+                                id="cars">
+                                <option value="I A">I A</option>
+                                <option value="I B">I B</option>
+                                <option value="I C">I C</option>
+                                <option value="I D">I D</option>
+                                <option value="II A">II A</option>
+                                <option value="II B">II B</option>
+                                <option value="II C">II C</option>
+                                <option value="II D">II D</option>
+                                <option value="III A">III A</option>
+                                <option value="III B">III B</option>
+                                <option value="III C">III C</option>
+                                <option value="III D">III D</option>
+                                <option value="IV A">IV A</option>
+                                <option value="IV B">IV B</option>
+                                <option value="IV C">IV C</option>
+                                <option value="IV D">IV D</option>
+                                <option value="IV E">IV E</option>
+                            </select>
                         </div>
                         <div class="wrap">
                             <label For="" class="text-black ">Jenis Kenaikan Pangkat (KP)</label>
@@ -75,6 +93,9 @@
                         </div>
                         <div class="wrap">
                             <label For="file" class="text-black">Upload Surat</label>
+                            <div class="text-[12px] text-red-800 ">
+                                *Format File PDF
+                            </div>
                             <div class="relative">
                                 <input type="file" id="file" accept="application/pdf" class=""
                                     name="file_golongan[]" multiple />
