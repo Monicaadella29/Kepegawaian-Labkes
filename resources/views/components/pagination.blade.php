@@ -1,5 +1,5 @@
 <div class="">
-    <div class="flex justify-center pt-6 font-semibold">
+    <!-- <div class="flex justify-center pt-6 font-semibold">
         <nav aria-label="Page navigation example">
             <ul class="inline-flex -space-x-px text-base h-10">
                 <li>
@@ -28,6 +28,48 @@
                 </li>
                 <li>
                     <a href="#"
+                        class="flex items-center justify-center px-4 h-10 leading-tight text-white bg-white  rounded-e-lg hover:bg-gray-100 hover:text-white dark:bg-[#4F8EA5] dark: dark:text-white dark:hover:bg-gray-400 dark:hover:text-white">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div> -->
+    @php
+        $min = 1;
+        $max = $pages;
+        if ($pages > 5) {
+            if ($current > 3) {
+                $min = $current - 2;
+                if ($current + 2 > $pages) {
+                    $min = $pages - 4;
+                }
+                $max = $current + 2 > $pages ? $pages : $current + 2;
+            } else {
+                $max = 5;
+            }
+        }
+    @endphp
+    <div class="flex justify-center pt-6 font-semibold">
+        <nav aria-label="Page navigation example">
+            <ul class="inline-flex -space-x-px text-base h-10">
+                <li>
+                    <a href="?page={{ $current - 1 }}"
+                        class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-white bg-white  rounded-s-lg hover:bg-gray-100 hover:text-white dark:bg-[#4F8EA5] dark: dark:text-white dark:hover:bg-gray-400 dark:hover:text-white">Previous</a>
+                </li>
+                @for ($i = $min; $i <= $max; $i++)
+                    @if ($i == $current)
+                        <li>
+                            <a href="?page={{ $i }}"
+                                class="flex items-center justify-center px-4 h-10 leading-tight text-white bg-white  hover:bg-gray-100 hover:text-white dark:bg-[#4F8EA5] dark:text-white dark:hover:bg-gray-400 dark:hover:text-white">{{ $i }}</a>
+                        </li>
+                    @else
+                        <li>
+                            <a href="?page={{ $i }}"
+                                class="flex items-center justify-center px-4 h-10 leading-tight text-white bg-white  hover:bg-gray-100 hover:text-white dark:bg-[#4F8EA5] dark:text-white dark:hover:bg-gray-400 dark:hover:text-white">{{ $i }}</a>
+                        </li>
+                    @endif
+                @endfor
+                <li>
+                    <a href="?page={{ $current + 1 }}"
                         class="flex items-center justify-center px-4 h-10 leading-tight text-white bg-white  rounded-e-lg hover:bg-gray-100 hover:text-white dark:bg-[#4F8EA5] dark: dark:text-white dark:hover:bg-gray-400 dark:hover:text-white">Next</a>
                 </li>
             </ul>

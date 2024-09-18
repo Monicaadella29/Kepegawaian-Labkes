@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Absen;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class AbsenController extends Controller
 {
@@ -17,8 +18,18 @@ class AbsenController extends Controller
             $query->whereDate('tgl', $date);
         }
         $absen = $query->get();
+
+        $page = request()->get('page', 1);
+        $perPage = 5;
+        $paginatedData = new LengthAwarePaginator(
+            $absen->forPage($page, $perPage),
+            $absen->count(),                 
+            $perPage,                        
+            $page,                           
+            ['path' => request()->url()]     
+        );
           
-        return view('pages.user.absensi.absensi', compact('absen','date'));
+        return view('pages.user.absensi.absensi', compact('paginatedData','date'));
     }
 
     public function upload()
@@ -74,7 +85,17 @@ class AbsenController extends Controller
 
         $absen = $query->get();
 
-        return view('pages.admin.absensi.absensi', compact('absen','search'));
+        $page = request()->get('page', 1);
+        $perPage = 5;
+        $paginatedData = new LengthAwarePaginator(
+            $absen->forPage($page, $perPage), 
+            $absen->count(),                  
+            $perPage,                        
+            $page,                           
+            ['path' => request()->url()]    
+        );
+
+        return view('pages.admin.absensi.absensi', compact('paginatedData','search'));
     }
 
     public function showDetail(Request $request, $id)
@@ -93,7 +114,17 @@ class AbsenController extends Controller
         }
 
         $absen = $query->get();
+
+        $page = request()->get('page', 1);
+        $perPage = 5;
+        $paginatedData = new LengthAwarePaginator(
+            $absen->forPage($page, $perPage), 
+            $absen->count(),                  
+            $perPage,                        
+            $page,                           
+            ['path' => request()->url()]    
+        );
         // dd($absen);
-        return view('pages.admin.absensi.detail-absensi', compact('absen'));
+        return view('pages.admin.absensi.detail-absensi', compact('paginatedData'));
     }
 }

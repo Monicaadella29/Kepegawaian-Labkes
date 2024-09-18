@@ -100,7 +100,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($cuti as $a)
+                    @foreach ($paginatedData as $a)
                         <tr class="bg-white border-b border-[#969BA0] hover:bg-gray-50 text-black hover:text-black">
                             <td class="px-3 py-3">
                                 {{ $loop->iteration }}
@@ -143,7 +143,9 @@
                 </tbody>
             </table>
         </div>
-        <x-pagination />
+        @if ($paginatedData->lastPage() > 1)
+            <x-pagination :pages="$paginatedData->lastPage()" :current="$paginatedData->currentPage()" />
+        @endif
     </x-sidebar-user>
 </body>
 

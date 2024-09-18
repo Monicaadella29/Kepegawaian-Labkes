@@ -60,7 +60,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($absen as $a)
+                        @foreach ($paginatedData as $a)
                             <tr class="bg-white border-b border-[#969BA0] hover:bg-gray-50 text-black hover:text-black">
                                 <td class="px-3 py-3">{{ $loop->iteration }}</td>
                                 <td class="px-3 py-3">{{ $a->user->name }}</td>
@@ -79,7 +79,7 @@
                                 </td>
                             </tr>
                         @endforeach
-                        @if ($absen->isEmpty())
+                        @if ($paginatedData->isEmpty())
                             <tr>
                                 <td colspan="6" class="text-center py-3">Tidak ada data absensi.</td>
                             </tr>
@@ -88,7 +88,9 @@
                 </table>
             </div>
         </div>
-        <x-pagination />
+        @if ($paginatedData->lastPage() > 1)
+            <x-pagination :pages="$paginatedData->lastPage()" :current="$paginatedData->currentPage()" />
+        @endif
     </x-sidebar-admin>
 </body>
 

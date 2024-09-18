@@ -6,6 +6,7 @@ use App\Models\Cuti;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class CutiController extends Controller
 {
@@ -21,7 +22,17 @@ class CutiController extends Controller
     }
     $cuti = $query->get();
 
-    return view('pages.admin.cuti.cuti', compact('cuti', 'search'));
+    $page = request()->get('page', 1);
+    $perPage = 5;
+    $paginatedData = new LengthAwarePaginator(
+            $cuti->forPage($page, $perPage),
+            $cuti->count(),                 
+            $perPage,                        
+            $page,                           
+            ['path' => request()->url()]     
+        );
+
+    return view('pages.admin.cuti.cuti', compact('paginatedData', 'search'));
 }
 
 
@@ -30,6 +41,16 @@ class CutiController extends Controller
         $userId = auth()->id();
 
         $cuti = Cuti::where('user_id', $userId)->get();
+
+        $page = request()->get('page', 1);
+        $perPage = 5;
+        $paginatedData = new LengthAwarePaginator(
+            $cuti->forPage($page, $perPage),
+            $cuti->count(),                 
+            $perPage,                        
+            $page,                           
+            ['path' => request()->url()]     
+        );
 
         $user = User::findOrFail($userId);
         $totalKuota = $user->kuota_cuti;
@@ -54,7 +75,7 @@ class CutiController extends Controller
             $sisaCuti = $totalKuota;
         }
 
-        return view('pages.user.dashboard.riwayat-cuti.riwayat-cuti', compact('cuti', 'sisaCuti'));
+        return view('pages.user.dashboard.riwayat-cuti.riwayat-cuti', compact('paginatedData', 'sisaCuti'));
     }
 
     public function create()

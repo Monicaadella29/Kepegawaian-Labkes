@@ -21,7 +21,7 @@
                     <div class="md:w-1/2 w-full flex flex-col gap-3">
                         <div class="wrap ">
                             <label For="" class="text-black ">Golongan</label>
-                            <select name="jenis_golongan" required
+                            <select name="golongan" required
                                 class="border border-[#C3C3C3] text-gray-900 text-sm rounded-md focus:ring-[#C3C3C3] focus:border-[#C3C3C3] p-2 px-2 w-full bg-transparent"
                                 id="cars">
                                 <option value="I A">I A</option>
