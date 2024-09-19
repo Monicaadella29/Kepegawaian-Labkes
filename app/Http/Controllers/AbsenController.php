@@ -18,7 +18,7 @@ class AbsenController extends Controller
             $query->whereDate('tgl', $date);
         }
         $absen = $query->get();
-
+        // pagination
         $page = request()->get('page', 1);
         $perPage = 5;
         $paginatedData = new LengthAwarePaginator(
@@ -84,7 +84,7 @@ class AbsenController extends Controller
         }
 
         $absen = $query->get();
-
+        //pagination detail absen
         $page = request()->get('page', 1);
         $perPage = 5;
         $paginatedData = new LengthAwarePaginator(

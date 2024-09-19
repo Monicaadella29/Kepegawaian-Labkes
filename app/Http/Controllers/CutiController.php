@@ -21,7 +21,7 @@ class CutiController extends Controller
         $query->where('users.name', 'LIKE', '%' . $search . '%');
     }
     $cuti = $query->get();
-
+    //pagination cuti admin
     $page = request()->get('page', 1);
     $perPage = 5;
     $paginatedData = new LengthAwarePaginator(
@@ -41,7 +41,7 @@ class CutiController extends Controller
         $userId = auth()->id();
 
         $cuti = Cuti::where('user_id', $userId)->get();
-
+        //pagination riwayat
         $page = request()->get('page', 1);
         $perPage = 5;
         $paginatedData = new LengthAwarePaginator(
